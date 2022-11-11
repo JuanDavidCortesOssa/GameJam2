@@ -322,7 +322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4434419965346501756, guid: 3a5aed36bf5489144af46f61de873f8b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4434419965346501756, guid: 3a5aed36bf5489144af46f61de873f8b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -356,6 +356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4434419965346501759, guid: 3a5aed36bf5489144af46f61de873f8b, type: 3}
+      propertyPath: powerUpDuration
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a5aed36bf5489144af46f61de873f8b, type: 3}
 --- !u!1001 &8647276969455198891
@@ -383,7 +387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8647276969269455414, guid: 4c6f3521af7419a43a4f5d42eebcf37d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8647276969269455414, guid: 4c6f3521af7419a43a4f5d42eebcf37d, type: 3}
       propertyPath: m_LocalRotation.w
