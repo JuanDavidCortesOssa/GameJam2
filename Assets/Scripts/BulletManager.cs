@@ -20,10 +20,9 @@ public class BulletManager : MonoBehaviour
 
     public void CreateBullet()
     {
-        //if(gameObject.activeInHierarchy == true) Debug.Log("active");
-        bullet.direction = direction;
-        Instantiate(bullet, transform.position + Vector3.forward, Quaternion.identity);
        
+        Instantiate(bullet, transform.position + Vector3.forward, Quaternion.identity);  
+        bullet.direction = direction;
     }
 
 }
