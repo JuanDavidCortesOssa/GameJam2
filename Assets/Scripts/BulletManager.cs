@@ -6,9 +6,10 @@ public class BulletManager : MonoBehaviour
 {
     [SerializeField] private Bullet bullet;
     // Start is called before the first frame update
+    Vector3 direction;
     void Start()
     {
-
+        direction = (transform.localRotation * Vector3.right).normalized;
     }
 
     // Update is called once per frame
@@ -19,6 +20,9 @@ public class BulletManager : MonoBehaviour
 
     public void CreateBullet()
     {
-        Instantiate(bullet, transform.position, Quaternion.identity);
+       
+        Instantiate(bullet, transform.position + Vector3.forward, Quaternion.identity);  
+        bullet.direction = direction;
     }
+
 }
