@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 4349763895853730382}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -371,6 +371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   powerUpDuration: 3
+  maxOxygen: 15
   guns:
   - {fileID: 4434419965513463313}
   - {fileID: 158867507}
