@@ -8,6 +8,11 @@ public class Shoot : MonoBehaviour
     [SerializeField] private Transform bulletOrigin;
     [SerializeField] private float fireInterval;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip ShotSound;
+
+
     void Start()
     {
         InvokeRepeating("SpawnBullet", 0.2f, fireInterval);
@@ -15,6 +20,7 @@ public class Shoot : MonoBehaviour
     
     public void SpawnBullet()
     {
+        audioSource.PlayOneShot(ShotSound);
         Instantiate(bulletPrefab, bulletOrigin.position, bulletPrefab.transform.rotation);
     }
 }

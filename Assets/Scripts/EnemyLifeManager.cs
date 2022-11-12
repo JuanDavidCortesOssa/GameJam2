@@ -12,8 +12,13 @@ public class EnemyLifeManager : MonoBehaviour
     [SerializeField] private int resistance;
     private float damagePerShot = 1;
 
+    [Header("Particles")]
     [SerializeField] private ParticleSystem hitParticle;
     [SerializeField] private ParticleSystem destroyedParticle;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip destroyedSound;
 
     void Start()
     {
@@ -42,7 +47,12 @@ public class EnemyLifeManager : MonoBehaviour
         {
             destroyedParticle.transform.parent = null;
             destroyedParticle.Play();
+
+            audioSource.transform.parent = null;
+            audioSource.PlayOneShot(destroyedSound);
+
             Destroy(destroyedParticle.gameObject, 2f);
+            Destroy(audioSource.gameObject, 2f);
             Destroy(gameObject);
         }
     }
