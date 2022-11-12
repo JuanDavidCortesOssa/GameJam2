@@ -12,6 +12,9 @@ public class EnemyLifeManager : MonoBehaviour
     [SerializeField] private int resistance;
     private float damagePerShot = 1;
 
+    [SerializeField] private ParticleSystem hitParticle;
+    [SerializeField] private ParticleSystem destroyedParticle;
+
     void Start()
     {
         damagePerShot = (float)1 / resistance;
@@ -33,9 +36,13 @@ public class EnemyLifeManager : MonoBehaviour
         if (updatedLife >= 0.1)
         {
             lifeBarImage.DOFillAmount(lifeBarImage.fillAmount - damagePerShot, 0.2f);
+            hitParticle.Play();
         }
         else
         {
+            destroyedParticle.transform.parent = null;
+            destroyedParticle.Play();
+            Destroy(destroyedParticle.gameObject, 2f);
             Destroy(gameObject);
         }
     }

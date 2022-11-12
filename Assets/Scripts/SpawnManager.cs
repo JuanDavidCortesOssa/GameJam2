@@ -10,6 +10,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private Transform inferiorBoundTransform;
     private Vector3 inferiorPosition;
 
+    [SerializeField] private float spawnInterval;
     [SerializeField] private List<GameObject> spawnList;
 
     private void Start()
@@ -17,7 +18,7 @@ public class SpawnManager : MonoBehaviour
         superiorPosition = superiorBoundTransform.position;
         inferiorPosition = inferiorBoundTransform.position;
 
-        InvokeRepeating("SpawnGameObjects", 2f, 1f);
+        InvokeRepeating("SpawnGameObjects", 2f, spawnInterval);
     }
 
     public void SpawnGameObjects()
