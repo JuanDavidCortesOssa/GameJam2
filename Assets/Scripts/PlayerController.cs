@@ -9,12 +9,12 @@ public class PlayerController : MonoBehaviour
     private bool hasPowerUp = false;
     private float verticalBoundary;
     private float horizontalBoundary;
-
+    public float currentOxygen { get; private set; }
 
     [Header("Ship Setup")]
     [SerializeField] private float speed;
     [SerializeField] float powerUpDuration;
-
+    [SerializeField] float maxOxygen;
 
     [Space()]
     [Header("Ship's armament")]
@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentOxygen = maxOxygen;
+
         verticalBoundary = background.GetComponent<MeshRenderer>().bounds.max.y;
         horizontalBoundary = background.GetComponent<MeshRenderer>().bounds.max.x;
     }
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PlayerMovement();
+        ReduceOxygen();
         if (Input.GetKeyDown(KeyCode.F))
         {
             Shoot();
@@ -74,7 +77,27 @@ public class PlayerController : MonoBehaviour
         {
             if (gun.isActiveAndEnabled == true) gun.CreateBullet();
         }
+    }
 
+    private void ReduceOxygen()
+    {
+        if (currentOxygen > 0)
+        {
+            currentOxygen -= Time.deltaTime;
+        }
+        else if (currentOxygen <= 0)
+        {
+            currentOxygen = 0;
+            Debug.Log("Game Over");
+        }
+    }
+
+    public void AddOxygen(float value)
+    {
+        if(currentOxygen + value < maxOxygen)
+            currentOxygen += value;
+        else
+            currentOxygen = maxOxygen;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -96,7 +119,6 @@ public class PlayerController : MonoBehaviour
         hasPowerUp = false;
         SetPowerUpGuns(false);
         shield.SetActive(false);
-
     }
 
     private void SetPowerUpGuns(bool activate)
