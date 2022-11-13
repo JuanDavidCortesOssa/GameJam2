@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     [Header("Map reference")]
     [SerializeField] GameObject background;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip destroyedSound;
+
     // Start is called before the first frame update
     void Start()
     {
