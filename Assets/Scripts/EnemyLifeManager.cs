@@ -20,8 +20,11 @@ public class EnemyLifeManager : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip destroyedSound;
 
+    private GameManager gameManager;
+
     void Start()
     {
+        gameManager = GameManager.Instance;
         damagePerShot = (float)1 / resistance;
     }
 
@@ -45,6 +48,8 @@ public class EnemyLifeManager : MonoBehaviour
         }
         else
         {
+            gameManager.IncrementScore(50f);
+
             destroyedParticle.transform.parent = null;
             destroyedParticle.Play();
 
