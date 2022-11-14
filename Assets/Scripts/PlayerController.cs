@@ -97,7 +97,13 @@ public class PlayerController : MonoBehaviour
 
     private void ReduceOxygen()
     {
-        if (currentOxygen > 0)
+
+        if (UIManager.instance.oxygenImage.fillAmount == 0)
+        {
+            DestroyPlayer();
+        }
+
+       /* if (currentOxygen > 0)
         {
             currentOxygen -= Time.deltaTime;
         }
@@ -106,11 +112,14 @@ public class PlayerController : MonoBehaviour
             currentOxygen = 0;
             DestroyPlayer();
         }
+        */
     }
 
     public void AddOxygen(float value)
     {
         AudioSource.PlayClipAtPoint(pickUpOxygen, transform.position);
+        UIManager.instance.oxygenImage.fillAmount = 1f;
+
         if (currentOxygen + value < maxOxygen)
             currentOxygen += value;
         else
@@ -139,6 +148,7 @@ public class PlayerController : MonoBehaviour
         SetPowerUpGuns(true);
         shield.SetActive(true);
 
+
         yield return new WaitForSeconds(powerUpDuration);
 
         hasPowerUp = false;
@@ -162,7 +172,9 @@ public class PlayerController : MonoBehaviour
         explosion.Play();
         GameManager.Instance.SetGameOver();
         
+        StartCoroutine(UIManager.instance.SetFinalStats());
         Destroy(explosion, 3);
-        Destroy(gameObject);
+        Destroy(gameObject,2f);
+
     }
 }

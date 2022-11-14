@@ -22,6 +22,7 @@ public class GameManager : Singleton<GameManager>
     public void IncrementScore(float increment)
     {
         score += increment;
+        UIManager.instance.scoreText.text = "Score: " +score;
         Debug.Log("Score: " + score);
     }
 
