@@ -110,12 +110,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   superiorBoundTransform: {fileID: 123584596262042639}
   inferiorBoundTransform: {fileID: 123584596177648122}
-  enemiesFirstSpawnTime: 2
-  enemiesSpawnInterval: 3
+  enemiesFirstSpawnTime: 3
+  enemiesSpawnInterval: 1
   enemiesList:
   - {fileID: 4599813007258208228, guid: 885b0a9f25b130148a71272b9a793682, type: 3}
   - {fileID: 1097814609343720831, guid: ac21326501790ea4a9e886b0cf4d41bc, type: 3}
   objectsFirstSpawnTime: 5
-  objectsSpawnInterval: 20
-  objectsList:
-  - {fileID: 8647276969269455410, guid: 4c6f3521af7419a43a4f5d42eebcf37d, type: 3}
+  powerUpSpawnInterval: 15
+  oxygenSpawnInterval: 10
+  oxygen: {fileID: 200835865452824515, guid: 41143afec1eb2f240b3d1ca3a50b4413, type: 3}
+  powerUp: {fileID: 8647276969269455410, guid: 4c6f3521af7419a43a4f5d42eebcf37d, type: 3}

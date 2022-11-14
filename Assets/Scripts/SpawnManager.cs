@@ -18,8 +18,10 @@ public class SpawnManager : MonoBehaviour
 
     [Header("Objects")]
     [SerializeField] private float objectsFirstSpawnTime;
-    [SerializeField] private float objectsSpawnInterval;
-    [SerializeField] private List<GameObject> objectsList;
+    [SerializeField] private float powerUpSpawnInterval;
+    [SerializeField] private float oxygenSpawnInterval;
+    [SerializeField] private GameObject oxygen;
+    [SerializeField] private GameObject powerUp;
 
 
     private void Start()
@@ -28,17 +30,24 @@ public class SpawnManager : MonoBehaviour
         inferiorPosition = inferiorBoundTransform.position;
 
         InvokeRepeating("SpawnGameEnemies", enemiesFirstSpawnTime, enemiesSpawnInterval);
-        InvokeRepeating("SpawnGameObjects", objectsFirstSpawnTime, objectsSpawnInterval);
+        InvokeRepeating("SpawnPowerUp", Random.Range(5, 10), powerUpSpawnInterval);
+        InvokeRepeating("SpawnOxygen", Random.Range(4, 8), oxygenSpawnInterval);
     }
 
-    public void SpawnGameObjects()
+    public void SpawnPowerUp()
     {
-        int randomObjectNumber = Random.Range(0, objectsList.Count);
-
         Vector3 randomPosition = new(superiorPosition.x, 
             Random.Range(superiorPosition.y, inferiorPosition.y), superiorPosition.z);
 
-        Instantiate(objectsList[randomObjectNumber], randomPosition, objectsList[randomObjectNumber].transform.rotation);
+        Instantiate(powerUp, randomPosition, powerUp.transform.rotation);
+    }
+
+    public void SpawnOxygen()
+    {
+        Vector3 randomPosition = new(superiorPosition.x, 
+            Random.Range(superiorPosition.y, inferiorPosition.y), superiorPosition.z);
+
+        Instantiate(oxygen, randomPosition, oxygen.transform.rotation);
     }
 
     public void SpawnGameEnemies()
