@@ -9,7 +9,9 @@ public class PlayerController : MonoBehaviour
     private bool hasPowerUp = false;
     private float verticalBoundary;
     private float horizontalBoundary;
+    private float verticalBoundaryOffset = 0.5f;
     public float currentOxygen { get; private set; }
+    private AudioSource audioSource;
 
     [Header("Ship Setup")]
     [SerializeField] private float speed;
@@ -25,27 +27,38 @@ public class PlayerController : MonoBehaviour
     [Header("Map reference")]
     [SerializeField] GameObject background;
 
-    [Header("Sounds")]
+    [Header("VFX and SFX")]
     [SerializeField] private AudioClip destroyedSound;
+    [SerializeField] private ParticleSystem explosion;
+    [SerializeField] private AudioClip shotSound;
+    [SerializeField] private AudioClip powerUpSound;
+    [SerializeField] private AudioClip pickUpOxygen;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         currentOxygen = maxOxygen;
 
-        verticalBoundary = background.GetComponent<MeshRenderer>().bounds.max.y;
+        verticalBoundary = background.GetComponent<MeshRenderer>().bounds.max.y - verticalBoundaryOffset;
         horizontalBoundary = background.GetComponent<MeshRenderer>().bounds.max.x;
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement();
-        ReduceOxygen();
-        if (Input.GetKeyDown(KeyCode.F))
+        if (!GameManager.Instance.gameOver)
         {
-            Shoot();
+            PlayerMovement();
+            ReduceOxygen();
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Shoot();
+                audioSource.PlayOneShot(shotSound);
+            }
         }
+
     }
 
     private void PlayerMovement()
@@ -91,13 +104,14 @@ public class PlayerController : MonoBehaviour
         else if (currentOxygen <= 0)
         {
             currentOxygen = 0;
-            Debug.Log("Game Over");
+            DestroyPlayer();
         }
     }
 
     public void AddOxygen(float value)
     {
-        if(currentOxygen + value < maxOxygen)
+        AudioSource.PlayClipAtPoint(pickUpOxygen, transform.position);
+        if (currentOxygen + value < maxOxygen)
             currentOxygen += value;
         else
             currentOxygen = maxOxygen;
@@ -105,14 +119,22 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("PowerUp")) StartCoroutine(SetPowerUp());
-        else if (other.CompareTag("Enemy") && !hasPowerUp) Destroy(gameObject);
+        if (other.CompareTag("PowerUp"))
+        {
+            StartCoroutine(SetPowerUp());
+
+        }
+        else if (other.CompareTag("Enemy") && !hasPowerUp)
+        {
+            DestroyPlayer();
+        }
 
         if (!other.CompareTag("PlayerBullet")) Destroy(other.gameObject);
     }
 
     private IEnumerator SetPowerUp()
     {
+        AudioSource.PlayClipAtPoint(powerUpSound, transform.position);
         hasPowerUp = true;
         SetPowerUpGuns(true);
         shield.SetActive(true);
@@ -131,5 +153,16 @@ public class PlayerController : MonoBehaviour
             if (activate) guns[i].gameObject.SetActive(true);
             else guns[i].gameObject.SetActive(false);
         }
+    }
+
+    public void DestroyPlayer()
+    {
+        AudioSource.PlayClipAtPoint(destroyedSound, transform.position);
+        explosion.transform.parent = null;
+        explosion.Play();
+        GameManager.Instance.SetGameOver();
+        
+        Destroy(explosion, 3);
+        Destroy(gameObject);
     }
 }
