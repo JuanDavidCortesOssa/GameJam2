@@ -8,6 +8,8 @@ public class GameManager : Singleton<GameManager>
     private float score = 0;
     private float finalScore = 0;
 
+    public bool gameOver { get; private set; } = false;
+
     void Update()
     {
     }
@@ -27,5 +29,10 @@ public class GameManager : Singleton<GameManager>
     {
         survivedTime += Time.deltaTime;
         Debug.Log("Time Survived: " + survivedTime);
+    }
+
+    public void SetGameOver()
+    {
+        gameOver = true;
     }
 }
