@@ -8,6 +8,8 @@ public class MenuStart : MonoBehaviour
 
     public GameObject instructionsPanel;
 
+    public GameObject creditsPanel;
+
     public void PlayGame()
     {
         SceneManager.LoadScene("Level 1");
@@ -23,6 +25,17 @@ public class MenuStart : MonoBehaviour
     {
         instructionsPanel.SetActive(false);
 
+
+    }
+
+    public void openCreditsPanel()
+    {
+        creditsPanel.SetActive(true);
+    }
+
+    public void closeCreditsPanel()
+    {
+        creditsPanel.SetActive(false);
 
     }
 
