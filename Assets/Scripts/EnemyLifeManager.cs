@@ -11,6 +11,8 @@ public class EnemyLifeManager : MonoBehaviour
     [Tooltip("Number of shots that the object resist")]
     [SerializeField] private int resistance;
     private float damagePerShot = 1;
+    [Tooltip("Points that the enemy will give the player when destroyed")]
+    [SerializeField] private float enemyValue;
 
     [Header("Particles")]
     [SerializeField] private ParticleSystem hitParticle;
@@ -48,7 +50,7 @@ public class EnemyLifeManager : MonoBehaviour
         }
         else
         {
-            gameManager.IncrementScore(50f);
+            gameManager.IncrementScore(enemyValue);
 
             destroyedParticle.transform.parent = null;
             destroyedParticle.Play();

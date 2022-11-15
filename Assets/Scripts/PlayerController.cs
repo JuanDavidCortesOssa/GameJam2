@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         {
             PlayerMovement();
             ReduceOxygen();
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 Shoot();
                 audioSource.PlayOneShot(shotSound);
@@ -173,8 +173,8 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.SetGameOver();
         
         StartCoroutine(UIManager.instance.SetFinalStats());
-        Destroy(explosion, 3);
-        Destroy(gameObject,2f);
+        Destroy(explosion, 4f);
+        Destroy(gameObject,4f);
 
     }
 }

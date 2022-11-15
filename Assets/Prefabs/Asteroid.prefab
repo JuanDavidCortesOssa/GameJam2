@@ -275,6 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeBarImage: {fileID: 1928585321289273993}
   resistance: 2
+  enemyValue: 50
   hitParticle: {fileID: 8406179905577424863}
   destroyedParticle: {fileID: 8653098095701162941}
   audioSource: {fileID: 4649795669036010029}
