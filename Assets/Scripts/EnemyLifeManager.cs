@@ -58,9 +58,9 @@ public class EnemyLifeManager : MonoBehaviour
             audioSource.transform.parent = null;
             audioSource.PlayOneShot(destroyedSound);
 
-            Destroy(destroyedParticle.gameObject, 2f);
-            Destroy(audioSource.gameObject, 2f);
-            Destroy(gameObject);
+            //Destroy(destroyedParticle.gameObject, 2f);
+            //Destroy(audioSource.gameObject, 2f);
+            //gameObject.SetActive(false);
         }
     }
 }

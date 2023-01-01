@@ -6,6 +6,7 @@ public class DestroyerBound : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(other.transform.root.gameObject);
+        //Destroy(other.transform.root.gameObject);
+        other.gameObject.SetActive(false);
     }
 }

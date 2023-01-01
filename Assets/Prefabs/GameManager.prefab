@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &426698808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 426698809}
+  m_Layer: 0
+  m_Name: SuperiorBound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &426698809
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426698808}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.97, y: 3.21, z: -2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7236309559122384273}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &581039137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 581039138}
+  m_Layer: 0
+  m_Name: InferiorBound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &581039138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581039137}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.66, y: -4.37, z: -2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7236309559122384273}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7236309559122384279
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,6 +72,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7236309559122384273}
   - component: {fileID: 7236309559122384272}
+  - component: {fileID: 1141510450}
+  - component: {fileID: 1141510449}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -28,7 +92,9 @@ Transform:
   m_LocalPosition: {x: -4.359783, y: 1.7448703, z: -1.4782684}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 426698809}
+  - {fileID: 581039138}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -44,3 +110,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fbc80003730d047b6d1f333ba51b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1141510450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7236309559122384279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ff07b666affe34c86f547210986b3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  superiorBoundTransform: {fileID: 426698809}
+  inferiorBoundTransform: {fileID: 581039138}
+  enemiesFirstSpawnTime: 3
+  enemiesSpawnInterval: 1
+  enemiesList:
+  - {fileID: 4599813007258208228, guid: 885b0a9f25b130148a71272b9a793682, type: 3}
+  - {fileID: 1097814609343720831, guid: ac21326501790ea4a9e886b0cf4d41bc, type: 3}
+  objectsFirstSpawnTime: 5
+  powerUpSpawnInterval: 15
+  oxygenSpawnInterval: 10
+  oxygen: {fileID: 200835865452824515, guid: 41143afec1eb2f240b3d1ca3a50b4413, type: 3}
+  powerUp: {fileID: 8647276969269455410, guid: 4c6f3521af7419a43a4f5d42eebcf37d, type: 3}
+--- !u!114 &1141510449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7236309559122384279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c645805912a4f2148b7d4762c505ab15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBulletsParent: {fileID: 0}
+  enemyBulletGO: {fileID: 5553133671035677348, guid: f11f3e54b12083c4e976fa1b23ee25d4, type: 3}
+  bulletsAmount: 20
+  astheroidsParent: {fileID: 0}
+  asteroidGO: {fileID: 4599813007258208228, guid: 885b0a9f25b130148a71272b9a793682, type: 3}
+  asteroidsAmount: 5
+  alienShipParent: {fileID: 0}
+  alienShipGO: {fileID: 1097814609343720831, guid: ac21326501790ea4a9e886b0cf4d41bc, type: 3}
+  shipsAmount: 5

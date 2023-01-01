@@ -23,9 +23,12 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject oxygen;
     [SerializeField] private GameObject powerUp;
 
+    private ObjectPool objectPool;
 
     private void Start()
     {
+        objectPool = ObjectPool.Instance;
+
         superiorPosition = superiorBoundTransform.position;
         inferiorPosition = inferiorBoundTransform.position;
 
@@ -57,7 +60,22 @@ public class SpawnManager : MonoBehaviour
         Vector3 randomPosition = new(superiorPosition.x,
             Random.Range(superiorPosition.y, inferiorPosition.y), superiorPosition.z);
 
-        Instantiate(enemiesList[randomObjectNumber], randomPosition, enemiesList[randomObjectNumber].transform.rotation);
+        GameObject objectToSpawn = null;
+
+        if (randomObjectNumber == 0)
+        {
+            objectToSpawn = objectPool.GetPooledAsteroid();
+        }
+        else
+        {
+            objectToSpawn = objectPool.GetPooledShip();
+        }
+
+        if (objectToSpawn != null)
+        {
+            objectToSpawn.transform.position = randomPosition;
+            objectToSpawn.SetActive(true);
+        }
     }
 
 }
